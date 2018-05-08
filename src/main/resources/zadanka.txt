@@ -1,6 +1,6 @@
 1. Stworzenie encji TODO(id, user, date, description) + dodanie danych testowych(SQL) w skrypcie(data.sql).
 2. REST-point do odczytu wszystkich TODO(każdy zalogowany użytkownik może czytać wszystkie TODO - każdego użytkownika).
-3. REST-point do odczytu wszystkich TODO zalogowanego użytkownika.
+3*. REST-point do odczytu wszystkich TODO zalogowanego użytkownika.
     3.1* REST-point do odczytu pojedynczego TODO po id.
 4. REST-point do zakładania nowego TODO. Id użytkownika dostajemy z HTTP. Tylko użytkownik z rolą USER lub ADMIN może zakładać TODO.
     4.1* Walidacja TODO (wymagane date, description). Informacja o błędnych danych zawracana jako exception.
