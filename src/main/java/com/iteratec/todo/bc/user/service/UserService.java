@@ -2,6 +2,7 @@ package com.iteratec.todo.bc.user.service;
 
 import com.iteratec.todo.bc.user.dao.UserRepo;
 import com.iteratec.todo.bc.user.service.dto.UserDTO;
+import com.iteratec.todo.tech.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public class UserService {
 
     public UserDTO findById(Long id) {
         return userRepo.findById(id).map(UserDTO::new).orElse(null);
+    }
+
+    public UserDTO findByUsername(String username) {
+        return new UserDTO(userRepo.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User with username: " + username + " not found.")));
     }
 }
