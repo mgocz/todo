@@ -38,12 +38,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/rest/user/all")
                 .hasRole("ADMIN")
-                .antMatchers("/**")
-                .hasAnyRole("GUEST", "USER", "ADMIN")
+                .antMatchers("/rest/todo/create")
+                .hasAnyRole("USER", "ADMIN")
+                .antMatchers("/rest/todo/update/**")
+                .hasAnyRole("USER", "ADMIN")
+                .antMatchers("/rest/todo/delete/**")
+                .hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .csrf()
+                .disable();
     }
 
 }

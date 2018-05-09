@@ -1,22 +1,35 @@
 package com.iteratec.todo.bc.user.dao.entity;
 
+import com.iteratec.todo.bc.todo.dao.entity.Todo;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
     private String role;
     private Boolean enabled;
 
+    @OneToMany(mappedBy = "user")
+    private List<Todo> todos = new ArrayList<>();
+
     public User() {
+    }
+
+    public User(Long id, String username) {
+        this.id = id;
+        this.username = username;
     }
 
     public Long getId() {
@@ -57,5 +70,13 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 }
